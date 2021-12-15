@@ -160,7 +160,7 @@ contract ERC20 is Ownable{
 
     function mint() public onlyOwner {
         require(totalSupply < maxSupply, "Maximum Amount of token are in circulation");
-        require(currentBlock > nextBlock, "Wait for next release time");
+        require(block.number > nextBlock, "Wait for next release time");
         currentBlock = block.number;
         nextBlock = currentBlock.add(12960); 
         balanceOf[msg.sender] = balanceOf[msg.sender].add(150000);
